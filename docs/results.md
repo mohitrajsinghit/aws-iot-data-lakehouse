@@ -8,14 +8,22 @@
 
 | Metric | Target / Expected | Measured Actual | Run Date | Evidence Source |
 |---|---|---|---|---|
-| Total Buildings | 10 (`B01`–`B10`) | TBD | TBD | |
-| Total Sensors | 500 (50/bldg) | TBD | TBD | |
-| Reading Interval | 10 seconds | TBD | TBD | |
-| 1-Day Rows Read | 4,320,000 ± defects | TBD | TBD | |
-| 7-Day Rows Read | 30,240,000 ± defects | TBD | TBD | |
-| Raw CSV Size (7 days) | ~3 GB (uncompressed) | TBD | TBD | |
+| Total Buildings | 10 (`B01`–`B10`) | 10 (`B01`–`B10`) | 2026-10-21 | `generator/config.py` |
+| Total Sensors | 500 (50/bldg) | 500 (50/bldg) | 2026-10-21 | `build_sensor_topology()` |
+| Reading Interval | 10 seconds | 10 seconds | 2026-10-21 | 8,640 intervals/day |
+| 1-Day Rows (Base) | 4,320,000 | 4,320,000 | 2026-10-21 | `data/raw/_manifests/date=2026-10-01.json` |
+| 1-Day Rows Written (Total) | 4,320,000 ± defects | 4,385,219 | 2026-10-21 | `data/raw/_manifests/date=2026-10-01.json` |
+| 1-Day Raw CSV Size | ~430 MB (uncompressed) | 227.65 MB (238,709,475 bytes) | 2026-10-21 | Local disk measurement |
+| 7-Day Rows Read | 30,240,000 ± defects | TBD (Milestone 7) | TBD | |
+| Raw CSV Size (7 days) | ~3 GB (uncompressed) | TBD (Milestone 7) | TBD | |
 | Curated Parquet Size | TBD | TBD | TBD | |
-| Injected Defects Rate | ~2% | TBD | TBD | |
+| Exact Duplicates Injected | 1.5% (~64,800) | 65,219 (1.51%) | 2026-10-21 | `data/raw/_manifests/date=2026-10-01.json` |
+| Late Records Injected | 0.5% (~21,600) | 20,521 (0.47%) | 2026-10-21 | `data/raw/_manifests/date=2026-10-01.json` |
+| Combined Duplicate + Late | ~2.0% (~86,400) | 85,740 (1.98%) | 2026-10-21 | `data/raw/_manifests/date=2026-10-01.json` |
+| Null Values Injected | 0.5% (~21,600) | 22,336 (0.52%) | 2026-10-21 | `data/raw/_manifests/date=2026-10-01.json` |
+| Out-of-Range Injected | 0.3% (~12,960) | 12,948 (0.30%) | 2026-10-21 | `data/raw/_manifests/date=2026-10-01.json` |
+| Bad Timestamps Injected | 0.2% (~8,640) | 8,794 (0.20%) | 2026-10-21 | `data/raw/_manifests/date=2026-10-01.json` |
+| Total Defect Rows | ~3.0% (~129,600) | 130,018 (3.01%) | 2026-10-21 | `data/raw/_manifests/date=2026-10-01.json` |
 
 ---
 
