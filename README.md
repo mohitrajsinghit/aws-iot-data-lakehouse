@@ -48,7 +48,7 @@ A realistic, cost-controlled **smart-building IoT telemetry data lakehouse pipel
 ## Repository Structure
 
 ```
-building-iot-lakehouse/
+aws-iot-data-lakehouse/
 ├── .github/workflows/        # CI/CD workflows (lint, tests, terraform validate/deploy)
 ├── athena/                   # Benchmark scripts and query SQL definitions
 ├── docs/                     # Problems log and empirical benchmark results

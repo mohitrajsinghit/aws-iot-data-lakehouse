@@ -5,6 +5,16 @@ Format follows the specification in Project.md Section 18. Newest entries on top
 
 ---
 
+## 2026-10-21 – Standardize project and resource naming to aws-iot-data-lakehouse
+- Type: config
+- What changed: Standardized repository name, directory reference, documentation, and AWS resource name prefixes to `aws-iot-data-lakehouse` (replacing legacy `building-iot-lakehouse` references). Configured AWS profile `iot-lakehouse` targeting region `ap-south-1`.
+- Why: User requested alignment of repository name, folder, README, and AWS resource prefixes to `aws-iot-data-lakehouse`.
+- Files: README.md, CHANGELOG.md
+- Verified by: Inspected README structure and tested AWS STS caller identity using the `iot-lakehouse` profile.
+- Impact: AWS resource naming and Terraform modules will consistently use the `aws-iot-data-lakehouse` prefix.
+
+---
+
 ## 2026-10-21 – Milestone 1: Initialize repository skeleton, tooling, and lint/test automation
 - Type: config
 - What changed: Created repository directory skeleton, .gitignore, cross-platform Makefile, pyproject.toml with ruff/pytest configs, initial smoke tests, problems log, and changelog. Configured Python 3.11 virtual environment with ruff and pytest.
