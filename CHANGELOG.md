@@ -5,6 +5,16 @@ Format follows the specification in Project.md Section 18. Newest entries on top
 
 ---
 
+## 2026-10-21 – Milestone 3: Implement PySpark quality checks, transforms, local ETL job, and reconciliation
+- Type: feature
+- What changed: Built `glue/quality.py` with 5 quality checks (schema castability, non-null assertions, physical value ranges, deduplication, and partition timestamp validity) and quarantine tagging. Implemented pure functions in `glue/transforms.py` for explicit string schema reading, type casting, deduplication on `(sensor_id, event_time)`, and 1-minute and 1-hour building rollups. Built `glue/job.py` end-to-end pipeline runner supporting both local and AWS Glue environments. Added pytest test suites in `tests/test_quality.py`, `tests/test_transforms.py`, and `tests/test_reconciliation.py`. Resolved Windows PySpark Hadoop winutils and worker socket environment configuration (documented in `docs/problems.md`).
+- Why: Implements Milestone 3 core ETL logic, local data transformation, and automated reconciliation validation before cloud deployment.
+- Files: glue/__init__.py, glue/job.py, glue/quality.py, glue/transforms.py, tests/conftest.py, tests/test_quality.py, tests/test_transforms.py, tests/test_reconciliation.py, .gitignore, docs/problems.md, docs/results.md, CHANGELOG.md
+- Verified by: Ran full pytest test suite (15/15 passed). Executed local 1-day ETL run on 4,385,219 raw rows in 143.87s; measured quarantined rows (44,078), duplicates removed (65,219), and clean curated rows (4,275,922) exactly matched ground truth from generator manifest with balanced reconciliation equation ($4,275,922 + 44,078 + 65,219 = 4,385,219$). Idempotency verified on repeat run.
+- Impact: Satisfies Section 12 Milestone 3 criteria. Proves data quality engine catches 100% of injected defects and confirms storage reduction from 227.65 MB raw CSV to 39.33 MB curated Parquet (82.7% reduction).
+
+---
+
 ## 2026-10-21 – Milestone 2: Build seeded IoT sensor telemetry generator and run 1-day simulation
 - Type: feature
 - What changed: Built `generator/config.py` defining simulation topology (10 buildings, 500 sensors, 5 floors, 10s intervals) and defect rates (1.5% duplicates, 0.5% late, 0.5% nulls, 0.3% out-of-range, 0.2% bad timestamps). Implemented `generator/generate.py` with diurnal physics calculations, hourly partitioned CSV emission, and manifest JSON generation. Created unit test suite in `tests/test_generator.py` and updated `docs/results.md` with measured 1-day metrics.

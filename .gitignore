@@ -59,6 +59,9 @@ crash.log
 *.pem
 *.key
 
+# Local Hadoop / winutils binaries
+.hadoop/
+
 # OS and IDE files
 .DS_Store
 Thumbs.db
